@@ -1,5 +1,9 @@
 # json-sql-utility
 
+[![module verion and npm link][npm]][npm-url]
+[![bundlephobia minified size][size-min]][bundlephobia-url]
+[![bundlephobia minizipped size][size-minzip]][bundlephobia-url]
+
 This module is useful for buidling SQL queries from JSON objects.
 Currently only SELECT query is supported.
 
@@ -69,3 +73,10 @@ ORDER BY A
 
 */
 ```
+
+
+[npm]: https://img.shields.io/npm/v/json-sql-utility.svg
+[npm-url]: https://www.npmjs.com/package/json-sql-utility
+[size-min]: https://img.shields.io/bundlephobia/min/json-sql-utility
+[size-minzip]: https://img.shields.io/bundlephobia/minzip/json-sql-utility
+[bundlephobia-url]: https://bundlephobia.com/result?p=json-sql-utility
