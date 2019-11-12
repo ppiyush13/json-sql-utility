@@ -1,7 +1,7 @@
 {
   "name": "json-sql-utility",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple utility for converting JSON to SQL",
   "main": "dist/json-sql-utility.cjs.js",
   "module": "dist/json-sql-utility.esm.js",
   "scripts": {
