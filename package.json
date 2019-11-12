@@ -6,6 +6,7 @@
   "module": "dist/json-sql-utility.esm.js",
   "scripts": {
     "build": "rimraf dist && rollup --config",
+    "release": "npm run build && np --no-yarn --no-cleanup --no-2fa",
     "test": "jest"
   },
   "author": {
