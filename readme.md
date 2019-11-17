@@ -59,6 +59,9 @@ const query = select({
     ],
     groupBy: ['A', 'B', 'C'],
     orderBy: ['A'],
+    misc: [
+        "EXTERNAL NAME 'TestFuncs$MyMath.pow'"
+    ],
 });
 
 console.log(query);
@@ -67,9 +70,10 @@ console.log(query);
 Will output:
 
 SELECT A, B, count(D) AS CNT FROM STUDENTS
-WHERE NAME = "Piyush" AND ROLL = 13 AND (A = 5 OR A = 10)
+WHERE NAME = 'Piyush' AND ROLL = 13 AND (A = 5 OR A = 10)
 GROUP BY A, B, C
 ORDER BY A
+EXTERNAL NAME 'TestFuncs$MyMath.pow'
 
 */
 ```
