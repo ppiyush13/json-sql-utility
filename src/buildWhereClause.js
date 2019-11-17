@@ -50,8 +50,30 @@ const builder = {
         }
     },
 
+    transformBetweenConfig(config) {
+        const {start, end, value} = config;
+        if(start && end) {
+            return config;
+        }
+        const createBetweenCfg = (start, end) => {
+            return {
+                field: config.field,
+                start, end,
+            };
+        }
+        if(value) {
+            if(value.start && value.end) {
+                return createBetweenCfg(value.start, value.end);
+            }
+            if(Array.isArray(value) && value.length === 2 && !start && !end ) {
+                return createBetweenCfg(value[0], value[1]);
+            }
+        }
+        return config;
+    },
+
     between(config, isNot) {
-        const transformedConfigs = mapObjValues(config, quotifyValue, ['before', 'after']);
+        const transformedConfigs = mapObjValues(this.transformBetweenConfig(config), quotifyValue, ['start', 'end']);
         return templateUtil.applyTemplate(templates.between, transformedConfigs, isNot);
     },
 

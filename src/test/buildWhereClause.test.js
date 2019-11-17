@@ -174,14 +174,14 @@ describe('testing buildWhereClause module', () => {
                                     {
                                         operator: 'notBetween',
                                         field: 'b',
-                                        before: 15,
-                                        after: 19,
+                                        start: 15,
+                                        end: 19,
                                     },
                                     {
                                         operator: 'BETWEEN',
                                         field: 'c',
-                                        before: '1', 
-                                        after: '2',
+                                        start: '1', 
+                                        end: '2',
                                     }
                                 ]
                             }
@@ -255,8 +255,8 @@ describe('testing buildWhereClause module', () => {
         [
             {
                 field: 'A',
-                before: '2',
-                after: '5'
+                start: '2',
+                end: '5'
             },
             `
                 A BETWEEN '2' AND '5' 
@@ -265,8 +265,29 @@ describe('testing buildWhereClause module', () => {
         [
             {
                 field: 'A',
-                before: 2,
-                after: 5
+                start: 2,
+                end: 5
+            },
+            `
+                A BETWEEN 2 AND 5 
+            `
+        ],
+        [
+            {
+                field: 'A',
+                value: [2, 5],
+            },
+            `
+                A BETWEEN 2 AND 5 
+            `
+        ],
+        [
+            {
+                field: 'A',
+                value: {
+                    start: 2,
+                    end: 5,
+                },
             },
             `
                 A BETWEEN 2 AND 5 

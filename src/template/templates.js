@@ -1,6 +1,6 @@
 export default {
-    between({field, before, after, notOperator}) {
-        return `${field} ${notOperator} BETWEEN ${before} AND ${after}`;
+    between({field, start, end, notOperator}) {
+        return `${field} ${notOperator} BETWEEN ${start} AND ${end}`;
     },
 
     is({field, value, notOperator}) {
