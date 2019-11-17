@@ -16,7 +16,7 @@ describe('testing buildWhereClause module', () => {
                 }
             ],
             `
-                A = "5" AND B IN ("5", "10")
+                A = '5' AND B IN ('5', '10')
             `,
         ],
         [
@@ -33,7 +33,7 @@ describe('testing buildWhereClause module', () => {
                 }
             ],
             `
-                A != "5" AND B NOT IN ("5", 13)
+                A != '5' AND B NOT IN ('5', 13)
             `,
         ],
         [
@@ -96,14 +96,14 @@ describe('testing buildWhereClause module', () => {
                 },
             ],
             `
-                A = "5" AND
-                B IN (13, "15") AND
+                A = '5' AND
+                B IN (13, '15') AND
                 C IS null AND
-                X LIKE "% Profit %" AND
+                X LIKE '% Profit %' AND
                 D != 6 AND
-                E NOT IN (6, "Foo") AND
+                E NOT IN (6, 'Foo') AND
                 F IS NOT null AND
-                Y NOT LIKE "_Under"
+                Y NOT LIKE '_Under'
             `,
         ],
         [
@@ -135,7 +135,7 @@ describe('testing buildWhereClause module', () => {
                 }
             ],
             `
-                NAME = "Piyush" AND 
+                NAME = 'Piyush' AND 
                 ROLL = 13 AND 
                 (
                     A = 5 OR A = 10
@@ -190,14 +190,14 @@ describe('testing buildWhereClause module', () => {
                 ]
             },
             `
-                a IN ("1", "2")  OR 
+                a IN ('1', '2')  OR 
                 a IS null OR
                 (
                     b IS NOT null AND
-                    c NOT IN ("1", "2") AND
+                    c NOT IN ('1', '2') AND
                     (
                         b NOT BETWEEN 15 AND 19 AND
-                        c BETWEEN "1" AND "2"
+                        c BETWEEN '1' AND '2'
                     )
                 )
             `
@@ -259,7 +259,7 @@ describe('testing buildWhereClause module', () => {
                 after: '5'
             },
             `
-                A BETWEEN "2" AND "5" 
+                A BETWEEN '2' AND '5' 
             `
         ],
         [

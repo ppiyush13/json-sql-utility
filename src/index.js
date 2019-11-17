@@ -9,7 +9,7 @@ const convertObjValues2List = composeObjValueMapper(arrify);
 
 export const select = function select(selectConfigs) {
     const arrifiedSelectConfigs = convertObjValues2List(selectConfigs, ['groupBy', 'aggregate', 'fields', 'orderBy']);
-    const {fields, aggregate, from, where, groupBy, having, orderBy, limit} = arrifiedSelectConfigs;
+    const {fields, aggregate, from, where, groupBy, having, orderBy, limit, misc} = arrifiedSelectConfigs;
 
     const projectionFields = deriveProjection({fields, groupBy, aggregate});
     const whereClause = buildWhereClause.build(where);
@@ -44,6 +44,10 @@ export const select = function select(selectConfigs) {
         {
             condition: limitClause,
             tpl: `LIMIT ${limitClause}`,
-        }
+        },
+        {
+            condition: misc,
+            tpl: misc,
+        },
     ], ' ');
 };
