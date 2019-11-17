@@ -100,6 +100,10 @@ const builder = {
         return this.between(config, true);
     },
 
+    notdateBetween(config) {
+        return this.dateBetween(config, true);
+    },
+
     notlike(config) {
         return this.like(config, true);
     },

@@ -2,7 +2,6 @@ import functionAliasMap from '../funtionAliasMap'
 
 describe('testing functionAliasMap module', () => {
     it('should return alias map', () => {
-        console.log(functionAliasMap)
         expect(functionAliasMap).toEqual({
             equal: [ 'in', 'eq', 'is', 'equal', '=' ],
             notequal: [ 'notin', 'noteq', 'notis', 'notequal', '!=', '<>' ],

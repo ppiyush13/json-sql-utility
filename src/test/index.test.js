@@ -143,6 +143,67 @@ describe('testing json2sql module', () => {
                 some random text at end
             `,
         ],
+        [
+            {
+                fields: ['A', 'B'],
+                aggregate: [ 
+                    {
+                        fn: 'count',
+                        args: 'D',
+                        alias: 'CNT'
+                    }
+                ],
+                from: 'STUDENTS',
+                where: [
+                    {
+                        operator: 'equal',
+                        field: 'NAME',
+                        value: 'Piyush'
+                    },
+                    {
+                        operator: '=',
+                        field: 'ROLL',
+                        value: [13],
+                    },
+                    {
+                        operator: 'OR',
+                        conditions: [
+                            {
+                                operator: 'equal',
+                                field: 'A',
+                                value: 5,
+                            },
+                            {
+                                operator: 'equal',
+                                field: 'A',
+                                value: 10,
+                            }
+                        ]
+                    },
+                    {
+                        operator: 'dateBetween',
+                        field: 'BIRTH',
+                        value: {
+                            start: new Date(1975, 0, 1),
+                            end: new Date(1999, 11, 31),
+                        }
+                    },
+                ],
+                groupBy: ['A', 'B', 'C'],
+                orderBy: ['A'],
+                misc: [
+                    "EXTERNAL NAME 'TestFuncs$MyMath.pow'"
+                ],
+            },
+            `
+                SELECT A, B, count(D) AS CNT FROM STUDENTS
+                WHERE NAME = 'Piyush' AND ROLL = 13 AND (A = 5 OR A = 10) AND 
+                BIRTH BETWEEN ( '1975-01-01' AND '1999-12-31' )
+                GROUP BY A, B, C
+                ORDER BY A
+                EXTERNAL NAME 'TestFuncs$MyMath.pow'
+            `
+        ]
         
         
     ])('testing using it.each', (received, expected) => {

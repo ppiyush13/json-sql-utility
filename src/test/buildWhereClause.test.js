@@ -196,8 +196,8 @@ describe('testing buildWhereClause module', () => {
                     b IS NOT null AND
                     c NOT IN ('1', '2') AND
                     (
-                        b NOT BETWEEN 15 AND 19 AND
-                        c BETWEEN '1' AND '2'
+                        b NOT BETWEEN ( 15 AND 19 ) AND
+                        c BETWEEN ( '1' AND '2' )
                     )
                 )
             `
@@ -248,10 +248,19 @@ describe('testing buildWhereClause module', () => {
                         start: new Date(1975, 0, 1),
                         end: new Date(1999, 11, 31),
                     }
+                },
+                {
+                    operator: 'notDateBetween',
+                    field: 'birth',
+                    value: {
+                        start: new Date(1975, 0, 1),
+                        end: new Date(1999, 11, 31),
+                    }
                 }
             ],
             `
-                birth BETWEEN '1975-01-01' AND '1999-12-31'
+                birth BETWEEN ( '1975-01-01' AND '1999-12-31' )
+                AND birth NOT BETWEEN ( '1975-01-01' AND '1999-12-31' )
             `
         ],
     ])('testing with each utility', (received, expected) => {
@@ -274,7 +283,7 @@ describe('testing buildWhereClause module', () => {
                 end: '5'
             },
             `
-                A BETWEEN '2' AND '5' 
+                A BETWEEN ( '2' AND '5' ) 
             `
         ],
         [
@@ -284,7 +293,7 @@ describe('testing buildWhereClause module', () => {
                 end: 5
             },
             `
-                A BETWEEN 2 AND 5 
+                A BETWEEN ( 2 AND 5 ) 
             `
         ],
         [
@@ -293,7 +302,7 @@ describe('testing buildWhereClause module', () => {
                 value: [2, 5],
             },
             `
-                A BETWEEN 2 AND 5 
+                A BETWEEN ( 2 AND 5 ) 
             `
         ],
         [
@@ -305,7 +314,7 @@ describe('testing buildWhereClause module', () => {
                 },
             },
             `
-                A BETWEEN 2 AND 5 
+                A BETWEEN ( 2 AND 5 ) 
             `
         ]
     ])('testing between module', (received, expected) => {
@@ -320,7 +329,7 @@ describe('testing buildWhereClause module', () => {
                 end: new Date(2019, 10, 30)
             },
             `
-                A BETWEEN '2019-11-15' AND '2019-11-30' 
+                A BETWEEN ( '2019-11-15' AND '2019-11-30' ) 
             `
         ],
         [
@@ -332,7 +341,7 @@ describe('testing buildWhereClause module', () => {
                 }
             },
             `
-                A BETWEEN '2019-11-15' AND '2019-11-30' 
+                A BETWEEN ( '2019-11-15' AND '2019-11-30' ) 
             `
         ],
         
@@ -342,7 +351,7 @@ describe('testing buildWhereClause module', () => {
                 value: [ new Date(2019, 10, 15), new Date(2019, 10, 30) ]
             },
             `
-                A BETWEEN '2019-11-15' AND '2019-11-30' 
+                A BETWEEN ( '2019-11-15' AND '2019-11-30' ) 
             `
         ],
         [
@@ -353,7 +362,7 @@ describe('testing buildWhereClause module', () => {
                 format: 'MM-yyyy-dd',
             },
             `
-                A BETWEEN '11-2019-15' AND '11-2019-30' 
+                A BETWEEN ( '11-2019-15' AND '11-2019-30' ) 
             `
         ],
         [
@@ -366,7 +375,7 @@ describe('testing buildWhereClause module', () => {
                 }
             },
             `
-                A BETWEEN '11-2019-15' AND '11-2019-30' 
+                A BETWEEN ( '11-2019-15' AND '11-2019-30' ) 
             `
         ],
         
@@ -377,7 +386,7 @@ describe('testing buildWhereClause module', () => {
                 value: [ new Date(2019, 10, 15), new Date(2019, 10, 30) ]
             },
             `
-                A BETWEEN '11-2019-15' AND '11-2019-30' 
+                A BETWEEN ( '11-2019-15' AND '11-2019-30' ) 
             `
         ],
     ])('Testing DateBetween operator', (received, expected) => {
