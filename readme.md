@@ -55,7 +55,15 @@ const query = select({
                     value: 10,
                 }
             ]
-        }
+        },
+        {
+            operator: 'dateBetween',
+            field: 'BIRTH',
+            value: {
+                start: new Date(1975, 0, 1),
+                end: new Date(1999, 11, 31),
+            }
+        },
     ],
     groupBy: ['A', 'B', 'C'],
     orderBy: ['A'],
@@ -70,7 +78,8 @@ console.log(query);
 Will output:
 
 SELECT A, B, count(D) AS CNT FROM STUDENTS
-WHERE NAME = 'Piyush' AND ROLL = 13 AND (A = 5 OR A = 10)
+WHERE NAME = 'Piyush' AND ROLL = 13 AND (A = 5 OR A = 10) AND 
+BIRTH BETWEEN '1975-01-01' AND '1999-12-31'
 GROUP BY A, B, C
 ORDER BY A
 EXTERNAL NAME 'TestFuncs$MyMath.pow'

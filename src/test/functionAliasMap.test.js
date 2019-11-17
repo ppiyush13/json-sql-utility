@@ -6,6 +6,7 @@ describe('testing functionAliasMap module', () => {
             equal: [ 'in', 'eq', 'is', 'equal', '=' ],
             notequal: [ 'notin', 'noteq', 'notis', 'notequal', '!=', '<>' ],
             between: [ 'range', 'between' ],
+            dateBetween: ['dateRange', 'dateBetween'],
             notbetween: [ 'notrange', 'notbetween' ],
             like: ['like'],
             notlike: ['notlike'],

@@ -11,6 +11,10 @@ const aliasConfigs = {
         alias: 'range',
         generateNotEquivalent: true,
     },
+    dateBetween: {
+        alias: 'dateRange',
+        generateNotEquivalent: true,
+    },
     like: {
         // no alias and no operator
         generateNotEquivalent: true,

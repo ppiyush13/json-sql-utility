@@ -239,11 +239,26 @@ describe('testing buildWhereClause module', () => {
                 )
             `
         ],
+        [
+            [
+                {
+                    operator: 'dateBetween',
+                    field: 'birth',
+                    value: {
+                        start: new Date(1975, 0, 1),
+                        end: new Date(1999, 11, 31),
+                    }
+                }
+            ],
+            `
+                birth BETWEEN '1975-01-01' AND '1999-12-31'
+            `
+        ],
     ])('testing with each utility', (received, expected) => {
         expect(buildWhereClause.build(received)).toBeSimilarWith(expected);
     });
 
-    it('nesgative testing blocks', () => {
+    it('negative testing blocks', () => {
         const configObj = {
             operator: 'and',
         };
@@ -295,5 +310,77 @@ describe('testing buildWhereClause module', () => {
         ]
     ])('testing between module', (received, expected) => {
         expect(buildWhereClause.between(received)).toBeSimilarWith(expected);
+    });
+
+    it.each([
+        [
+            {
+                field: 'A',
+                start: new Date(2019, 10, 15),
+                end: new Date(2019, 10, 30)
+            },
+            `
+                A BETWEEN '2019-11-15' AND '2019-11-30' 
+            `
+        ],
+        [
+            {
+                field: 'A',
+                value: {
+                    start: new Date(2019, 10, 15),
+                    end: new Date(2019, 10, 30),
+                }
+            },
+            `
+                A BETWEEN '2019-11-15' AND '2019-11-30' 
+            `
+        ],
+        
+        [
+            {
+                field: 'A',
+                value: [ new Date(2019, 10, 15), new Date(2019, 10, 30) ]
+            },
+            `
+                A BETWEEN '2019-11-15' AND '2019-11-30' 
+            `
+        ],
+        [
+            {
+                field: 'A',
+                start: new Date(2019, 10, 15),
+                end: new Date(2019, 10, 30),
+                format: 'MM-yyyy-dd',
+            },
+            `
+                A BETWEEN '11-2019-15' AND '11-2019-30' 
+            `
+        ],
+        [
+            {
+                field: 'A',
+                format: 'MM-yyyy-dd',
+                value: {
+                    start: new Date(2019, 10, 15),
+                    end: new Date(2019, 10, 30),
+                }
+            },
+            `
+                A BETWEEN '11-2019-15' AND '11-2019-30' 
+            `
+        ],
+        
+        [
+            {
+                field: 'A',
+                format: 'MM-yyyy-dd',
+                value: [ new Date(2019, 10, 15), new Date(2019, 10, 30) ]
+            },
+            `
+                A BETWEEN '11-2019-15' AND '11-2019-30' 
+            `
+        ],
+    ])('Testing DateBetween operator', (received, expected) => {
+        expect(buildWhereClause.dateBetween(received)).toBeSimilarWith(expected);
     });
 });

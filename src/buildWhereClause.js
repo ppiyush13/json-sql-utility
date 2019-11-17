@@ -7,6 +7,7 @@ import templates from './template/templates'
 import templateUtil from './template/util';
 import {arrayJoinMap} from './arrayUtils';
 import {wrapInSpace, wrapeInSpacedBrackets} from './stringUtils';
+import dateValue from './dateValue';
 
 const builder = {
     build(where) {
@@ -57,7 +58,7 @@ const builder = {
         }
         const createBetweenCfg = (start, end) => {
             return {
-                field: config.field,
+                ...config,
                 start, end,
             };
         }
@@ -74,6 +75,13 @@ const builder = {
 
     between(config, isNot) {
         const transformedConfigs = mapObjValues(this.transformBetweenConfig(config), quotifyValue, ['start', 'end']);
+        return templateUtil.applyTemplate(templates.between, transformedConfigs, isNot);
+    },
+
+    dateBetween(config, isNot) {
+        const toDate = dateValue(config.format || 'yyyy-MM-dd');
+        const mapFn = item => quotifyValue(toDate(item));
+        const transformedConfigs = mapObjValues(this.transformBetweenConfig(config), mapFn, ['start', 'end']);
         return templateUtil.applyTemplate(templates.between, transformedConfigs, isNot);
     },
 

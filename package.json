@@ -27,7 +27,9 @@
   "license": "MIT",
   "dependencies": {
     "arrify": "^2.0.1",
+    "date-format": "^3.0.0",
     "identity-function": "^1.0.0",
+    "is-date-object": "^1.0.1",
     "is-function": "^1.0.1",
     "is-number": "^7.0.0",
     "is-string": "^1.0.4",
