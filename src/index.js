@@ -51,3 +51,5 @@ export const select = function select(selectConfigs) {
         },
     ], ' ');
 };
+
+export {buildWhereClause};
