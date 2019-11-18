@@ -198,7 +198,7 @@ describe('testing json2sql module', () => {
             `
                 SELECT A, B, count(D) AS CNT FROM STUDENTS
                 WHERE NAME = 'Piyush' AND ROLL = 13 AND (A = 5 OR A = 10) AND 
-                BIRTH BETWEEN ( '1975-01-01' AND '1999-12-31' )
+                BIRTH BETWEEN '1975-01-01' AND '1999-12-31'
                 GROUP BY A, B, C
                 ORDER BY A
                 EXTERNAL NAME 'TestFuncs$MyMath.pow'
