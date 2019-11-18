@@ -1,7 +1,7 @@
 import {addToArray, arrayJoin} from '../arrayUtils';
 import deriveAggregateFields from './aggregation';
 
-export default function projection({fields, groupBy, aggregate}) {
+export default function projection({fields, groupBy, aggregation}) {
     const projectionList = [];
     
     // either set fields or groupby as a base
@@ -12,8 +12,8 @@ export default function projection({fields, groupBy, aggregate}) {
         addToArray(projectionList, groupBy);
     }
 
-    // now add aggregate fields
-    addToArray(projectionList, deriveAggregateFields(aggregate));
+    // now add aggregation fields
+    addToArray(projectionList, deriveAggregateFields(aggregation));
     
     return arrayJoin(projectionList, ', ');
 }

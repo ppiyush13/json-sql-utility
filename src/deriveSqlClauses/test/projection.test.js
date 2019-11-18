@@ -4,7 +4,7 @@ describe('testing projection output', () => {
     it('when fields are defined', () => {
         const out = deriveProjection({
             fields: ['A', 'B', 'C'],
-            aggregate: [
+            aggregation: [
                 {
                     fn: 'count',
                     args: '*',
@@ -19,7 +19,7 @@ describe('testing projection output', () => {
     it('when fields are not defined', () => {
         const out = deriveProjection({
             fields: [],
-            aggregate: [
+            aggregation: [
                 {
                     fn: 'count',
                     args: '*',

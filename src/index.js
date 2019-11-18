@@ -8,10 +8,10 @@ import {deriveProjection, deriveGroupBy, deriveOrderBy, deriveLimit} from './der
 const convertObjValues2List = composeObjValueMapper(arrify);
 
 export const select = function select(selectConfigs) {
-    const arrifiedSelectConfigs = convertObjValues2List(selectConfigs, ['groupBy', 'aggregate', 'fields', 'orderBy']);
-    const {fields, aggregate, from, where, groupBy, having, orderBy, limit, misc} = arrifiedSelectConfigs;
+    const arrifiedSelectConfigs = convertObjValues2List(selectConfigs, ['groupBy', 'aggregation', 'fields', 'orderBy']);
+    const {fields, aggregation, from, where, groupBy, having, orderBy, limit, misc} = arrifiedSelectConfigs;
 
-    const projectionFields = deriveProjection({fields, groupBy, aggregate});
+    const projectionFields = deriveProjection({fields, groupBy, aggregation});
     const whereClause = buildWhereClause.build(where);
     const havingClause = buildWhereClause.build(having);
     const groupByClause = deriveGroupBy(groupBy);

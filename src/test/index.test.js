@@ -5,7 +5,7 @@ describe('testing json2sql module', () => {
         [
             {
                 fields: ['A', 'B'],
-                aggregate: [ 
+                aggregation: [ 
                     {
                         fn: 'count',
                         args: 'D',
@@ -52,7 +52,7 @@ describe('testing json2sql module', () => {
         ],
         [
             {
-                aggregate: [
+                aggregation: [
                     {
                         clause: 'uniq(name)',
                         alias: 'UniquesNames'
@@ -146,7 +146,7 @@ describe('testing json2sql module', () => {
         [
             {
                 fields: ['A', 'B'],
-                aggregate: [ 
+                aggregation: [ 
                     {
                         fn: 'count',
                         args: 'D',
