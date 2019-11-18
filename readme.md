@@ -22,7 +22,7 @@ import { select } from "json-sql-utility"
 
 const query = select({
     fields: ['A', 'B'],
-    aggregate: [ 
+    aggregation: [ 
         {
             fn: 'count',
             args: 'D',
